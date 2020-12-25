@@ -163,16 +163,14 @@
         var phone = $("#phone").val();
 		
         $.ajax({
-            type: "GET",
-            url: "https://email-node-rzlrvlpdsh.now.sh/send?to=vilvaathiban%40gmail.com&subject=New Enquiry&name="+ firstname + "&email=" + email + "&phone=" + phone,
+						url: "https://pr-mailer.vercel.app/api/?subject=New Enquiry&name="+ firstname + "&email=" + email + "&phone=" + phone,
             success: function(text) {
-                if (text == "sent") {
-                    formSuccess();
-                } else {
-                    formError();
-                    submitMSG(false, text);
-                }
-            }
+							formSuccess();
+						},
+						error: function() {
+							formError();
+              submitMSG(false, "Unable to submit your enquiry, please try again!");
+						}
         });
 	}
 
@@ -214,19 +212,17 @@
         // initiate variables with form content
         var cname = $("#cname").val();
         var cemail = $("#cemail").val();
-		var cmessage = $("#cmessage").val();
+				var cmessage = $("#cmessage").val();
 
         $.ajax({
-            type: "GET",
-            url: "https://email-node-rzlrvlpdsh.now.sh/send?to=vilvaathiban%40gmail.com&subject=New Enquiry&name="+ cname + "&email=" + cemail + "&phone=" + cmessage,
-            success: function(text) {
-                if (text == "sent") {
-                    formCSuccess();
-                } else {
-                    formCError();
-                    submitCMSG(false, text);
-                }
-            }
+            url: "https://pr-mailer.vercel.app/api/?subject=New Enquiry&name="+ cname + "&email=" + cemail + "&message=" + cmessage,
+            success: function() {
+							formSuccess();
+						},
+						error: function() {
+							formError();
+              submitMSG(false, "Unable to submit your enquiry, please try again!");
+						}
         });
     }
 
